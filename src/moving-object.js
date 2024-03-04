@@ -4,6 +4,7 @@ class MovingObject {
         this.vel = optionsObject["vel"]
         this.radius = optionsObject["radius"]
         this.color = optionsObject["color"]
+        this.game = optionsObject["game"]
     }
     draw (ctx){
         ctx.beginPath();
@@ -17,6 +18,7 @@ class MovingObject {
        let dY = this.vel[1]
        this.pos[0] += dX
        this.pos[1] += dY
+       this.game.wrap(this.pos)
     }
 }
 

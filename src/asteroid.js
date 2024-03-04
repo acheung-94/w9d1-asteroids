@@ -10,7 +10,8 @@ class Asteroid extends MovingObject {
         "radius" : Asteroid.RADIUS,
         "color" : Asteroid.COLOR,
         "pos" : optionsObject["pos"],
-        "vel" : Util.randomVec(100)
+        "vel" : Util.randomVec(20),
+        "game" : optionsObject["game"]
         }
 
         super(asteroidOptions);
