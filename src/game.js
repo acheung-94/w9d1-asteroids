@@ -3,7 +3,7 @@ import Asteroid from './asteroid.js'
 class Game {
     static DIM_X = 800
     static DIM_Y = 600
-    static NUM_ASTEROIDS = 4
+    static NUM_ASTEROIDS = 10
 
     constructor (){
         this.asteroids = []

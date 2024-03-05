@@ -20,6 +20,15 @@ class MovingObject {
        this.pos[1] += dY
        this.game.wrap(this.pos)
     }
+
+    isCollidedWith(otherObject){
+        let sumRad = this.radius + otherObject.radius
+        let dx = this.pos[0] - otherObject.pos[0]
+        let dy = this.pos[1] - otherObject.pos[1]
+        let distance = (dx ** 2) + (dy ** 2)
+        distance = Math.sqrt(distance)
+        return (distance < sumRad)
+    }
 }
 
 export default MovingObject;
