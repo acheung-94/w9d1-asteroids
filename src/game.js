@@ -1,4 +1,5 @@
 import Asteroid from './asteroid.js'
+import Ship from './ship.js'
 
 class Game {
     static DIM_X = 800
@@ -8,8 +9,12 @@ class Game {
     constructor (){
         this.asteroids = []
         this.addAsteroids(Game.NUM_ASTEROIDS);
+        this.ship = new Ship({ "game" : this})
     }
-
+    allObjects (){
+        let objects = this.asteroids.concat([this.ship])
+        return objects
+    }
     addAsteroids(num){
         while (this.asteroids.length < num) {
             let newAsteroid = new Asteroid( {"pos" : this.randomPosition(), "game": this} )
@@ -26,14 +31,14 @@ class Game {
         // ctx.fillStyle = "black"
         // ctx.fillRect(0,0, Game.DIM_X, Game.DIM_Y)
         ctx.drawImage(img, 0,0);
-        this.asteroids.forEach( (asteroid) => {
-            asteroid.draw(ctx)
+        this.allObjects().forEach( (object) => {
+            object.draw(ctx)
         })
     }
     
     moveObjects(){
-        this.asteroids.forEach ( (asteroid) => {
-            asteroid.move()
+        this.allObjects().forEach ( (object) => {
+            object.move()
         })
     }
 
@@ -58,12 +63,12 @@ class Game {
     }
 
     checkCollisions(){
-        for (let i=0; i < this.asteroids.length-1; i++){
-            let rock1 = this.asteroids[i]
-            for(let j=i+1; j < this.asteroids.length; j++){
-                let rock2 = this.asteroids[j]
-                if (rock1.isCollidedWith(rock2)) {
-                    rock1.collideWith(rock2);
+        for (let i=0; i < this.allObjects().length-1; i++){
+            let object1 = this.allObjects()[i]
+            for(let j=i+1; j < this.allObjects().length; j++){
+                let object2 = this.allObjects()[j]
+                if (object1.isCollidedWith(object2) && (object1 instanceof Asteroid)) {
+                    object1.collideWith(object2);
                 }
             }
         }

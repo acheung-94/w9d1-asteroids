@@ -1,5 +1,6 @@
 import * as Util from "./util.js";
 import MovingObject from "./moving-object.js";
+import Ship from "./ship.js";
 
 class Asteroid extends MovingObject {
     static RADIUS = 25;
@@ -15,6 +16,12 @@ class Asteroid extends MovingObject {
         }
 
         super(asteroidOptions);
+    }
+
+    collideWith(otherObject){
+        if (otherObject instanceof Ship){
+            otherObject.relocate()
+        }
     }
 }
 

@@ -33,8 +33,9 @@ class MovingObject {
 
     collideWith(otherObject){
         // if (this.isCollidedWith(otherObject)){
-            this.game.remove(otherObject)
-            this.game.remove(this)
+            // ** OVERWRITTEN - see Asteroid**
+        //this.game.remove(otherObject)
+        //this.game.remove(this)
         //}
     }
 }
