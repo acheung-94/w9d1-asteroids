@@ -10,7 +10,7 @@ class GameView {
 
     start () {
         setInterval( (game) => {
-            this.game.moveObjects()
+            this.game.step()
             this.game.draw(this.ctx, this.img);
         }, 100)
     }

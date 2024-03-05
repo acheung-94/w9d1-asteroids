@@ -3,7 +3,7 @@ import Asteroid from './asteroid.js'
 class Game {
     static DIM_X = 800
     static DIM_Y = 600
-    static NUM_ASTEROIDS = 10
+    static NUM_ASTEROIDS = 4
 
     constructor (){
         this.asteroids = []
@@ -55,6 +55,29 @@ class Game {
             return pos
         }
         return pos
+    }
+
+    checkCollisions(){
+        for (let i=0; i < this.asteroids.length-1; i++){
+            let rock1 = this.asteroids[i]
+            for(let j=i+1; j < this.asteroids.length; j++){
+                let rock2 = this.asteroids[j]
+                if (rock1.isCollidedWith(rock2)) {
+                    rock1.collideWith(rock2);
+                }
+            }
+        }
+    }//wow this is gonna be clunky running every 20 ms
+
+    step(){
+        this.moveObjects()
+        this.checkCollisions()
+    }
+
+    remove(asteroid){
+        let idx = this.asteroids.indexOf(asteroid)
+        this.asteroids.splice(idx, 1)
+        // it's splice, not slice! (why such bad names for similar functions? :/)
     }
 }
 

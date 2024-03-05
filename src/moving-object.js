@@ -25,9 +25,17 @@ class MovingObject {
         let sumRad = this.radius + otherObject.radius
         let dx = this.pos[0] - otherObject.pos[0]
         let dy = this.pos[1] - otherObject.pos[1]
+        //find a better way to determine the distance between two points ._.
         let distance = (dx ** 2) + (dy ** 2)
         distance = Math.sqrt(distance)
-        return (distance < sumRad)
+        return (distance <= sumRad)
+    }
+
+    collideWith(otherObject){
+        // if (this.isCollidedWith(otherObject)){
+            this.game.remove(otherObject)
+            this.game.remove(this)
+        //}
     }
 }
 
